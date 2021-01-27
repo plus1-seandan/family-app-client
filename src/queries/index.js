@@ -5,7 +5,11 @@ export const LOGIN = gql`
     login(email: $email, password: $password) {
       ok
       token
-      refreshToken
+      user {
+        id
+        email
+        username
+      }
       errors {
         path
         message

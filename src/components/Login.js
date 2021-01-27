@@ -3,38 +3,40 @@ import { Box, Input, Button, useToast } from "@chakra-ui/react";
 import { Formik, Field, Form } from "formik";
 import { useMutation } from "@apollo/client";
 
-import { REGISTER } from "../queries";
+import { LOGIN } from "../queries";
 import { useHistory } from "react-router-dom";
 
-const Register = () => {
+const Login = () => {
   const toast = useToast();
-  const [register] = useMutation(REGISTER);
+  const [login] = useMutation(LOGIN);
   const history = useHistory();
 
   const handleSubmit = async (data) => {
     try {
-      const response = await register({
+      const response = await login({
         variables: {
           ...data,
         },
       });
-      if (response.data.register.errors) {
+      console.log({ data: response.data });
+      if (!response.data.login.ok) {
         toast({
-          title: "Failed to Create Account.",
+          title: "Failed to Login.",
           description: "Please validate your information.",
           status: "error",
           duration: 9000,
           isClosable: true,
         });
       } else {
+        localStorage.setItem("token", response.data.login.token);
         toast({
-          title: "Successfully Created Account.",
-          description: "Please Login. Redirecting to login page...",
+          title: "Successfully Logged In.",
+          description: "Redirecting to home page...",
           status: "success",
           duration: 9000,
           isClosable: true,
         });
-        setTimeout(history.push("/login"), 2000);
+        setTimeout(history.push("/home"), 2000);
       }
     } catch (e) {
       console.log(e);
@@ -43,15 +45,11 @@ const Register = () => {
 
   return (
     <Box>
-      <Box>Register</Box>
+      <Box>Login</Box>
       <Formik
         initialValues={{
-          firstName: "",
-          lastName: "",
-          username: "",
           email: "",
           password: "",
-          dateOfBirth: "",
         }}
         onSubmit={async (data, { setSubmitting }) => {
           setSubmitting(true);
@@ -61,19 +59,6 @@ const Register = () => {
       >
         {({ values, isSubmitting, handleChange, handleBlur, handleSubmit }) => (
           <Form>
-            <Field
-              placeholder="John"
-              name="firstName"
-              type="input"
-              as={Input}
-            />
-            <Field placeholder="Doe" name="lastName" type="input" as={Input} />
-            <Field
-              placeholder="username"
-              name="username"
-              type="input"
-              as={Input}
-            />
             <Field placeholder="email" name="email" type="input" as={Input} />
             <Field
               placeholder="password"
@@ -81,9 +66,8 @@ const Register = () => {
               type="password"
               as={Input}
             />
-            <Field name="dateOfBirth" type="date" as={Input} />
             <Button disabled={isSubmitting} type="submit">
-              Register
+              Login
             </Button>
             {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
           </Form>
@@ -93,4 +77,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
