@@ -1,5 +1,5 @@
 import "../scss/main.scss";
-import logo from "../img/logo-white.png";
+import logo from "../img/logo2-white.png";
 import nat1 from "../img/nat-1-large.jpg";
 import nat2 from "../img/nat-2-large.jpg";
 import nat3 from "../img/nat-3-large.jpg";
@@ -7,6 +7,37 @@ import nat3 from "../img/nat-3-large.jpg";
 const Header = () => {
   return (
     <>
+      <div class="navigation">
+        <input type="checkbox" class="navigation__checkbox" id="navi-toggle" />
+        <label for="navi-toggle" class="navigation__button">
+          <span class="navigation__icon"></span>
+        </label>
+        <div class="navigation__background"></div>
+        <nav class="navigation__nav">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                some nav 1
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                some nav 2
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                some nav 3
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                some nav 4
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
       <header class="header">
         <div class="header__logo-box">
           <img src={logo} alt="Logo" class="header__logo" />
@@ -133,9 +164,140 @@ const Header = () => {
             <h2 class="heading-secondary">Plans</h2>
           </div>
           <div class="row">
-            <div class="col-1-of-3">col 1 </div>
-            <div class="col-1-of-3">col 2 </div>
-            <div class="col-1-of-3">col 3 </div>
+            <div class="col-1-of-3">
+              <div class="card">
+                <div class="card__side card__side--front">
+                  <div class="card__picture card__picture--1">&nbsb;</div>
+                  <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">
+                      see explore
+                    </span>
+                  </h4>
+                  <div class="card__details">
+                    <ul>
+                      <li>3 day tours</li>
+                      <li>up to 30 people</li>
+                      <li>2 tour guides</li>
+                      <li>sleep in cozy hotels</li>
+                      <li>difficulty: easy</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card__side card__side--back card__side--back-1">
+                  <div class="card__cta">
+                    <div class="card__price-box">
+                      <p class="card__price-only">Test</p>
+                      <p class="card__price-value">$300</p>
+                    </div>
+                    <a href="/#" class="btn btn--white">
+                      Book Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1-of-3">
+              <div class="card">
+                <div class="card__side card__side--front">
+                  <div class="card__picture card__picture--2">&nbsb;</div>
+                  <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--2">
+                      see explore
+                    </span>
+                  </h4>
+                  <div class="card__details">
+                    <ul>
+                      <li>3 day tours</li>
+                      <li>up to 30 people</li>
+                      <li>2 tour guides</li>
+                      <li>sleep in cozy hotels</li>
+                      <li>difficulty: easy</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card__side card__side--back card__side--back-2">
+                  <div class="card__cta">
+                    <div class="card__price-box">
+                      <p class="card__price-only">Test</p>
+                      <p class="card__price-value">$300</p>
+                    </div>
+                    <a href="/#" class="btn btn--white">
+                      Book Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1-of-3">
+              <div class="card">
+                <div class="card__side card__side--front">
+                  <div class="card__picture card__picture--3">&nbsb;</div>
+                  <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--3">
+                      see explore
+                    </span>
+                  </h4>
+                  <div class="card__details">
+                    <ul>
+                      <li>3 day tours</li>
+                      <li>up to 30 people</li>
+                      <li>2 tour guides</li>
+                      <li>sleep in cozy hotels</li>
+                      <li>difficulty: easy</li>
+                    </ul>
+                  </div>
+                </div>{" "}
+                <div class="card__side card__side--back card__side--back-3">
+                  <div class="card__cta">
+                    <div class="card__price-box">
+                      <p class="card__price-only">Test</p>
+                      <p class="card__price-value">$300</p>
+                    </div>
+                    <a href="/#" class="btn btn--white">
+                      Book Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-book">
+          <div class="book">
+            <div class="book__form">
+              <form action="#" class="form">
+                <div class=" u-margin-bottom-big">
+                  <h2 class="heading-secondary">Register Now</h2>
+                </div>
+                <div class="form__group">
+                  <input
+                    type="text"
+                    id="name"
+                    class="form__input"
+                    placeholder="Full Name"
+                    required
+                  />
+                  <label for="name" class="form__label">
+                    Full Name
+                  </label>
+                </div>
+                <div class="form_group">
+                  <input
+                    type="email"
+                    id="email"
+                    class="form__input"
+                    placeholder="Email address"
+                    required
+                  />
+                  <label for="email" class="form__label">
+                    Email
+                  </label>
+                </div>
+                <div class="form__group">
+                  <button class="btn btn--green">Register</button>
+                </div>
+              </form>
+            </div>
           </div>
         </section>
       </main>
