@@ -43,3 +43,13 @@ export const REGISTER = gql`
     }
   }
 `;
+
+export const ME = gql`
+  {
+    me {
+      id
+      username
+      email
+    }
+  }
+`;
