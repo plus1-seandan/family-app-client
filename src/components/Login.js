@@ -1,24 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Input, Button, useToast } from "@chakra-ui/react";
-import { Formik, Field, Form } from "formik";
 import { useMutation } from "@apollo/client";
 
 import { LOGIN } from "../queries";
 import { useHistory } from "react-router-dom";
 
+import "../scss/main.scss";
+
+const initState = {
+  email: "",
+  password: "",
+};
+
 const Login = () => {
   const toast = useToast();
   const [login] = useMutation(LOGIN);
   const history = useHistory();
+  const [state, setState] = useState(initState);
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (e) => {
     try {
+      e.preventDefault();
       const response = await login({
         variables: {
-          ...data,
+          ...state,
         },
       });
-      console.log({ data: response.data });
       if (!response.data.login.ok) {
         toast({
           title: "Failed to Login.",
@@ -44,36 +51,49 @@ const Login = () => {
   };
 
   return (
-    <Box>
-      <Box>Login</Box>
-      <Formik
-        initialValues={{
-          email: "",
-          password: "",
-        }}
-        onSubmit={async (data, { setSubmitting }) => {
-          setSubmitting(true);
-          await handleSubmit(data);
-          setSubmitting(false);
-        }}
-      >
-        {({ values, isSubmitting, handleChange, handleBlur, handleSubmit }) => (
-          <Form>
-            <Field placeholder="email" name="email" type="input" as={Input} />
-            <Field
-              placeholder="password"
-              name="password"
-              type="password"
-              as={Input}
-            />
-            <Button disabled={isSubmitting} type="submit">
-              Login
-            </Button>
-            {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-          </Form>
-        )}
-      </Formik>
-    </Box>
+    <>
+      <div class="login">
+        <div class="login__form">
+          <form onSubmit={handleSubmit} class="form">
+            <div class=" u-margin-bottom-big">
+              <h2 class="heading-secondary">Login</h2>
+            </div>
+            <div class="form_group">
+              <input
+                type="email"
+                id="email"
+                class="form__input"
+                placeholder="Email address"
+                onChange={(e) => setState({ ...state, email: e.target.value })}
+                required
+              />
+              <label for="email" class="form__label">
+                Email
+              </label>
+            </div>
+            <div class="form__group">
+              <input
+                type="password"
+                id="password"
+                class="form__input"
+                onChange={(e) =>
+                  setState({ ...state, password: e.target.value })
+                }
+                required
+              />
+              <label for="password" class="form__label">
+                Password
+              </label>
+            </div>
+            <div class="form__group">
+              <button type="submit" class="btn btn--green">
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
   );
 };
 

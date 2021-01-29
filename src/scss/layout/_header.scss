@@ -27,4 +27,15 @@
     transform: translate(-50%, -50%);
     text-align: center;
   }
+  &__login {
+    position: fixed;
+    position: fixed;
+    margin-top: 4rem;
+    margin-right: 4rem;
+    top: 0;
+    right: 0;
+    z-index: 5000;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
 }
