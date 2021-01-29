@@ -4,17 +4,20 @@
   grid-gap: 8px;
   max-width: 1200px;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
   position: relative;
+  margin: 3rem;
 
   &__card {
+    margin: 1rem;
     background-image: linear-gradient(
       to right bottom,
       rgba($color-primary-light, 0.8),
       rgba($color-primary-dark, 0.8)
     );
     border: 2px solid var(--color-primary-dark);
-    border-radius: 3px;
+    border-radius: 10px;
     color: var(--color-white);
     font-size: 3rem;
   }
@@ -25,8 +28,8 @@
   button {
     visibility: hidden;
     position: absolute;
-    top: 40%;
-    left: 30%;
+    top: 35%;
+    left: 25%;
   }
 }
 

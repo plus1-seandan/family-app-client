@@ -1,5 +1,5 @@
 .general-layout {
-  height: 95vh;
+  min-height: 95vh;
   //   padding-top: 8rem;
   //   padding-right: 8rem;
   //   padding-left: 8rem;
@@ -11,6 +11,7 @@
 }
 
 .container {
+  min-height: 95vh;
   height: 100%;
   margin: 0 auto;
   box-shadow: var(--shadow-dark);
@@ -24,5 +25,4 @@
 .home-view {
   background-color: var(--color-white);
   flex: 1; //grow as much as it can
-  height: 90vh;
 }

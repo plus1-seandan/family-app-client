@@ -25,10 +25,10 @@ const Sidebar = () => {
           </Link>
         </li>
         <li class="sidebar-nav__item">
-          <a class="sidebar-nav__link">
+          <Link to="/events" class="sidebar-nav__link">
             <EventIcon class="sidebar-nav__icon" />
             <span>Upcoming Events</span>
-          </a>
+          </Link>
         </li>
         <li class="sidebar-nav__item">
           <Link to="/albums" class="sidebar-nav__link">

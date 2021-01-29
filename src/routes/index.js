@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import LandingPage from "../pages/LandingPage";
 import ProfilePage from "../pages/ProfilePage";
 import AlbumPage from "../pages/AlbumPage";
+import EventsPage from "../pages/EventsPage";
 
 const Routes = () => {
   return (
@@ -17,6 +18,7 @@ const Routes = () => {
         <Route path="/home" exact component={HomePage} />
         <Route path="/profile" exact component={ProfilePage} />
         <Route path="/albums" exact component={AlbumPage} />
+        <Route path="/events" exact component={EventsPage} />
       </Switch>
     </BrowserRouter>
   );
