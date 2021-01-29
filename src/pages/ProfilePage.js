@@ -15,6 +15,7 @@ import logo from "../img/logo2-white.png";
 import me from "../img/seandan.jpg";
 import HomeHeader from "../components/HomeHeader";
 import Sidebar from "../components/Sidebar";
+import Profile from "../components/Profile";
 
 const ProfilePage = () => {
   return (
@@ -23,6 +24,7 @@ const ProfilePage = () => {
         <HomeHeader />
         <div class="general-content">
           <Sidebar />
+          <Profile />
         </div>
       </div>
     </div>
@@ -42,7 +44,7 @@ export default ProfilePage;
 //   <footer>Footer</footer>
 // </div>
 
-// .grid {
+// .profile {
 //   display: grid;
 //   grid-template-columns: 150px auto 150px;
 //   grid-template-rows: repeat(3, 100px);
