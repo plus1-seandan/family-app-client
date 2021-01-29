@@ -76,6 +76,9 @@ export const ME = gql`
       id
       username
       email
+      photo
+      firstName
+      lastName
     }
   }
 `;

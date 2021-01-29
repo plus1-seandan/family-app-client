@@ -8,7 +8,7 @@ import ProfileSide1 from "./ProfileSide1";
 
 const Profile = () => {
   const { loading, error, data } = useQuery(PROFILE);
-  console.log({ data });
+
   return (
     <div class="profile">
       <ProfileMain user={data?.getProfile.user} />

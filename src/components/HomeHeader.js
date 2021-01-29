@@ -16,6 +16,8 @@ import logo from "../img/logo2-white.png";
 import me from "../img/seandan.jpg";
 
 const HomeHeader = () => {
+  const { loading, error, data } = useQuery(ME);
+  console.log({ data });
   return (
     <header class="home-header">
       <img src={logo} alt="logo" class="home-logo" />
@@ -32,8 +34,12 @@ const HomeHeader = () => {
         </div>
         <div class="user-nav__user">
           <Link to="/profile">
-            <img src={me} class="user-nav__user-photo" alt="User Photo" />
-            <span class="user-nav__user-name">Sean</span>
+            <img
+              src={data?.me.photo}
+              class="user-nav__user-photo"
+              alt="User Photo"
+            />
+            <span class="user-nav__user-name">{data?.me.firstName}</span>
           </Link>
         </div>
       </nav>
