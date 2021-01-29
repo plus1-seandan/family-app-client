@@ -15,6 +15,7 @@ import logo from "../img/logo2-white.png";
 import me from "../img/seandan.jpg";
 import HomeHeader from "../components/HomeHeader";
 import Sidebar from "../components/Sidebar";
+import HomeDetail from "./HomeDetail";
 
 const Home = () => {
   return (
@@ -33,78 +34,7 @@ const Home = () => {
       <div class="overview">
         <h1 class="overview__heading">My Family</h1>
       </div>
-      <section class="section-features">
-        <div class="row">
-          <div class="col-1-of-4">
-            <div class="feature-box">
-              <i class="feature-box__icon icon-basic-pin1"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">
-                Explore the world
-              </h3>
-              <p class="feature-box__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aperiam, ipsum sapiente aspernatur.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-1-of-4">
-            <div class="feature-box">
-              <i class="feature-box__icon icon-basic-alarm"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">
-                Meet nature
-              </h3>
-              <p class="feature-box__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aperiam, ipsum sapiente aspernatur.
-              </p>
-            </div>
-          </div>
-          <div class="col-1-of-4">
-            <div class="feature-box">
-              <i class="feature-box__icon icon-basic-message-txt"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">
-                Find your way
-              </h3>
-              <p class="feature-box__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aperiam, ipsum sapiente aspernatur.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-1-of-4">
-            <div class="feature-box">
-              <i class="feature-box__icon icon-basic-heart"></i>
-              <h3 class="heading-tertiary u-margin-bottom-small">
-                Live a healthier life
-              </h3>
-              <p class="feature-box__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aperiam, ipsum sapiente aspernatur.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <div class="detail">
-        <div class="events">
-          <div class="events__upcoming">
-            <div class="events__upcoming__info">
-              <h1>Upcoming Events</h1>
-              <p>Alaska Cruise</p>
-            </div>
-            <div class="events__upcoming__date">
-              <p>
-                <h4>25</h4> <span>May</span>
-              </p>
-            </div>
-          </div>
-          <a href="/#" class="btn btn--white events__upcoming__btn">
-            View Event Details
-          </a>
-        </div>
-      </div>
+      <HomeDetail />
     </main>
   );
 };

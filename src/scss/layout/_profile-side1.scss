@@ -1,20 +1,26 @@
 .profile__side1 {
   background-image: linear-gradient(
-    to right bottom,
-    rgba($color-primary-light, 0.85),
-    rgba($color-primary-dark, 0.85)
-  );
+      to right bottom,
+      rgba($color-primary-light, 0.85),
+      rgba($color-primary-dark, 0.85)
+    ),
+    url(../../img/nat-5.jpg);
   border: 2px solid var(--color-white);
   box-shadow: var(--shadow-dark);
   color: var(--color-white);
   font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  button {
+    background-color: var(--color-grey-light-2);
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+  }
   ul {
     list-style: none;
     width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     li {
       color: var(--color-primary-dark);

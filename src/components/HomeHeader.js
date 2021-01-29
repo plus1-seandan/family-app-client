@@ -7,6 +7,7 @@ import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import EventIcon from "@material-ui/icons/Event";
 import HomeIcon from "@material-ui/icons/Home";
 import PhotoAlbumIcon from "@material-ui/icons/PhotoAlbum";
+import { Link } from "react-router-dom";
 
 import nat1 from "../img/nat-1-large.jpg";
 import nat2 from "../img/nat-2-large.jpg";
@@ -30,10 +31,10 @@ const HomeHeader = () => {
           <span class="user-nav__notification">13</span>
         </div>
         <div class="user-nav__user">
-          <a href="/profile">
+          <Link to="/profile">
             <img src={me} class="user-nav__user-photo" alt="User Photo" />
             <span class="user-nav__user-name">Sean</span>
-          </a>
+          </Link>
         </div>
       </nav>
     </header>

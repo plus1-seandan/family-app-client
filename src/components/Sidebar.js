@@ -7,7 +7,7 @@ import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import EventIcon from "@material-ui/icons/Event";
 import HomeIcon from "@material-ui/icons/Home";
 import PhotoAlbumIcon from "@material-ui/icons/PhotoAlbum";
-
+import { Link } from "react-router-dom";
 import nat1 from "../img/nat-1-large.jpg";
 import nat2 from "../img/nat-2-large.jpg";
 import nat3 from "../img/nat-3-large.jpg";
@@ -18,11 +18,11 @@ const Sidebar = () => {
   return (
     <nav class="sidebar">
       <ul class="sidebar-nav">
-        <li class="sidebar-nav__item sidebar-nav__item--active">
-          <a class="sidebar-nav__link">
+        <li class="sidebar-nav__item sidebar-nav__item">
+          <Link to="/home" class="sidebar-nav__link">
             <HomeIcon class="sidebar-nav__icon" />
             <span>My Family</span>
-          </a>
+          </Link>
         </li>
         <li class="sidebar-nav__item">
           <a class="sidebar-nav__link">
@@ -31,10 +31,10 @@ const Sidebar = () => {
           </a>
         </li>
         <li class="sidebar-nav__item">
-          <a class="sidebar-nav__link">
+          <Link to="/albums" class="sidebar-nav__link">
             <PhotoAlbumIcon class="sidebar-nav__icon" />
             <span>Photo Albums</span>
-          </a>
+          </Link>
         </li>
       </ul>
       <div class="legal">&copy; 2021 by Sean Dan. All rights reserved.</div>

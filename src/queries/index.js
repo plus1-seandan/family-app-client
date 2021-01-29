@@ -18,6 +18,32 @@ export const LOGIN = gql`
   }
 `;
 
+export const PROFILE = gql`
+  {
+    getProfile {
+      user {
+        id
+        email
+        username
+        firstName
+        lastName
+        photo
+      }
+      group {
+        id
+        members {
+          id
+          email
+          username
+          firstName
+          lastName
+          photo
+        }
+      }
+    }
+  }
+`;
+
 export const REGISTER = gql`
   mutation(
     $username: String!
