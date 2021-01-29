@@ -73,6 +73,8 @@
   display: flex;
   align-self: stretch;
   align-items: center;
+  color: var(--color-white);
+
   & > * {
     padding: 0 2rem;
     cursor: pointer;

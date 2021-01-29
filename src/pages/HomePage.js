@@ -15,7 +15,7 @@ import logo from "../img/logo2-white.png";
 import me from "../img/seandan.jpg";
 const HomePage = () => {
   return (
-    <div class="home">
+    <div class="general-layout">
       <div class="container">
         <header class="home-header">
           <img src={logo} alt="logo" class="home-logo" />
@@ -31,8 +31,10 @@ const HomePage = () => {
               <span class="user-nav__notification">13</span>
             </div>
             <div class="user-nav__user">
-              <img src={me} class="user-nav__user-photo" alt="User Photo" />
-              <span class="user-nav__user-name">Sean</span>
+              <a href="/profile">
+                <img src={me} class="user-nav__user-photo" alt="User Photo" />
+                <span class="user-nav__user-name">Sean</span>
+              </a>
             </div>
           </nav>
         </header>
@@ -77,42 +79,77 @@ const HomePage = () => {
             <div class="overview">
               <h1 class="overview__heading">My Family</h1>
             </div>
+            <section class="section-features">
+              <div class="row">
+                <div class="col-1-of-4">
+                  <div class="feature-box">
+                    <i class="feature-box__icon icon-basic-pin1"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-small">
+                      Explore the world
+                    </h3>
+                    <p class="feature-box__text">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Aperiam, ipsum sapiente aspernatur.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="col-1-of-4">
+                  <div class="feature-box">
+                    <i class="feature-box__icon icon-basic-alarm"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-small">
+                      Meet nature
+                    </h3>
+                    <p class="feature-box__text">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Aperiam, ipsum sapiente aspernatur.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-1-of-4">
+                  <div class="feature-box">
+                    <i class="feature-box__icon icon-basic-message-txt"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-small">
+                      Find your way
+                    </h3>
+                    <p class="feature-box__text">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Aperiam, ipsum sapiente aspernatur.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="col-1-of-4">
+                  <div class="feature-box">
+                    <i class="feature-box__icon icon-basic-heart"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-small">
+                      Live a healthier life
+                    </h3>
+                    <p class="feature-box__text">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Aperiam, ipsum sapiente aspernatur.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
             <div class="detail">
               <div class="events">
                 <div class="events__upcoming">
                   <div class="events__upcoming__info">
-                    <h1 class="events__upcoming__title">Upcoming Events</h1>
-                    <img
-                      src={nat1}
-                      class="events__upcoming__photo"
-                      alt="Upcoming Event"
-                    />
-                    <span>Alaska Cruise</span>
+                    <h1>Upcoming Events</h1>
+                    <p>Alaska Cruise</p>
                   </div>
-
                   <div class="events__upcoming__date">
                     <p>
                       <h4>25</h4> <span>May</span>
                     </p>
                   </div>
                 </div>
-                <a href="/#" class="btn btn--white">
-                  Create New Event
+                <a href="/#" class="btn btn--white events__upcoming__btn">
+                  View Event Details
                 </a>
               </div>
-              {/* <div class="events">
-                <div class="events__upcoming">
-                  <img
-                    src={nat1}
-                    class="events__upcoming__photo"
-                    alt="Upcoming Event"
-                  />
-                  <span>Alaska Cruise</span>
-                </div>
-                <a href="/#" class="btn btn--white">
-                  Create Event
-                </a>
-              </div> */}
             </div>
             <div class="footer">Footer</div>
           </main>
