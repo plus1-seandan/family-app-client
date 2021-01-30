@@ -1,3 +1,4 @@
+import { useQuery } from "@apollo/client";
 import {
   Modal,
   ModalOverlay,
@@ -9,6 +10,8 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { ALBUMS } from "../queries";
 import CreateAlbumModal from "./CreateAlbumModal";
 import EventForm from "./EventForm";
 const imgUrls = [
@@ -32,38 +35,34 @@ const gridClass = [
   "gallery-container",
   "gallery-container h-2",
 ];
-{
-  /* <div class="gallery-container w-3 h-2">
-  <div class="gallery-item">
-    <div class="image">
-      <img src="https://source.unsplash.com/1600x900/?nature" alt="nature" />
-    </div>
-    <div class="text">Nature</div>
-  </div>
-</div>; */
-}
 
-const Album = ({ url, idx }) => {
+const Album = ({ album, idx }) => {
   const classValue = gridClass[idx % gridClass.length];
   return (
     <div class={classValue}>
-      <div class="gallery-item">
-        <div class="image">
-          <img src={url} alt="nature" />
+      <Link to={`/albums/${album.id}`}>
+        <div class="gallery-item">
+          <div class="image">
+            <img src={album.albumCover} alt="nature" />
+          </div>
+          <div class="text">{album.albumName}</div>
         </div>
-        <div class="text">Nature</div>
-      </div>
+      </Link>
     </div>
   );
 };
 
 const Albums = () => {
+  const { loading, error, data } = useQuery(ALBUMS);
+  if (loading || error) {
+    return <div>loading...</div>;
+  }
   return (
     <div>
       <CreateAlbumModal />
       <div class="album__container">
-        {imgUrls.map((url, idx) => (
-          <Album url={url} idx={idx} />
+        {data.getAlbums.map((album, idx) => (
+          <Album album={album} idx={idx} />
         ))}
       </div>
     </div>

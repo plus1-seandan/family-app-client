@@ -126,3 +126,14 @@ export const UPCOMING_EVENTS = gql`
     }
   }
 `;
+
+export const ALBUMS = gql`
+  {
+    getAlbums {
+      id
+      albumName
+      albumCover
+      createdAt
+    }
+  }
+`;
