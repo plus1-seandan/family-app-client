@@ -5,8 +5,9 @@ import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
 import LandingPage from "../pages/LandingPage";
 import ProfilePage from "../pages/ProfilePage";
-import AlbumPage from "../pages/AlbumPage";
 import EventsPage from "../pages/EventsPage";
+import AlbumsPage from "../pages/AlbumsPage";
+import AlbumPage from "../pages/AlbumPage";
 
 const Routes = () => {
   return (
@@ -17,8 +18,9 @@ const Routes = () => {
         <Route path="/register" exact component={RegisterPage} />
         <Route path="/home" exact component={HomePage} />
         <Route path="/profile" exact component={ProfilePage} />
-        <Route path="/albums" exact component={AlbumPage} />
+        <Route path="/albums" exact component={AlbumsPage} />
         <Route path="/events" exact component={EventsPage} />
+        <Route path="/albums/:albumId?" exact component={AlbumPage} />
       </Switch>
     </BrowserRouter>
   );

@@ -1,15 +1,45 @@
+import { useMutation } from "@apollo/client";
+import { Box, Input, Button, useToast } from "@chakra-ui/react";
+
 import React, { useState } from "react";
+import { CREATE_EVENT, UPCOMING_EVENTS } from "../queries";
 
 const initState = {
-  name: "",
+  eventName: "",
   startDate: "",
 };
 
 function EventForm() {
   const [state, setState] = useState(initState);
+  const [createEvent] = useMutation(CREATE_EVENT);
+  const toast = useToast();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log({ state });
+    const response = await createEvent({
+      variables: {
+        ...state,
+      },
+      refetchQueries: [{ query: UPCOMING_EVENTS }],
+    });
+    if (response.data.createEvent.errors) {
+      toast({
+        title: "Failed to Create Event.",
+        description: "Please validate your information.",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Successfully Created Event.",
+        description: "",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
   };
   return (
     <div class="events__page__create__form">
@@ -23,7 +53,7 @@ function EventForm() {
             id="name"
             class="form__input"
             placeholder="Event Name"
-            onChange={(e) => setState({ ...state, name: e.target.value })}
+            onChange={(e) => setState({ ...state, eventName: e.target.value })}
             required
           />
           <label for="name" class="form__label">
@@ -35,7 +65,7 @@ function EventForm() {
             type="date"
             id="startDate"
             class="form__input"
-            onChange={(e) => setState({ ...state, date: e.target.value })}
+            onChange={(e) => setState({ ...state, startDate: e.target.value })}
             required
           />
           <label for="startDate" class="form__label">

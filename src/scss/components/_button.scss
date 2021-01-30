@@ -24,6 +24,14 @@
     color: $color-grey-dark;
   }
 
+  &--orange {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba($color-secondary-light, 0.85),
+      rgba($color-secondary-dark, 0.85)
+    );
+    color: $color-white;
+  }
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 1rem 2rem rgba($color-black, 0.5);

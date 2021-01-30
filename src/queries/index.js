@@ -43,6 +43,40 @@ export const PROFILE = gql`
     }
   }
 `;
+export const CREATE_EVENT = gql`
+  mutation($eventName: String!, $startDate: String!) {
+    createEvent(eventName: $eventName, startDate: $startDate) {
+      ok
+      event {
+        id
+        eventName
+        startDate
+      }
+      errors {
+        path
+        message
+      }
+    }
+  }
+`;
+
+export const CREATE_ALBUM = gql`
+  mutation($albumName: String!) {
+    createAlbum(albumName: $albumName) {
+      ok
+      album {
+        id
+        albumName
+        createdAt
+        albumCover
+      }
+      errors {
+        path
+        message
+      }
+    }
+  }
+`;
 
 export const REGISTER = gql`
   mutation(
@@ -79,6 +113,16 @@ export const ME = gql`
       photo
       firstName
       lastName
+    }
+  }
+`;
+
+export const UPCOMING_EVENTS = gql`
+  {
+    getUpcomingEvents {
+      id
+      eventName
+      startDate
     }
   }
 `;
