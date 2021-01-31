@@ -8,10 +8,16 @@ import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 import { setContext } from "@apollo/client/link/context";
+import { createUploadLink } from "apollo-upload-client";
+import { ApolloLink } from "@apollo/client/core";
 
 import Routes from "./routes";
 
-const httpLink = createHttpLink({
+// const httpLink = createHttpLink({
+//   uri: "http://localhost:4000/graphql",
+// });
+
+const uploadLink = createUploadLink({
   uri: "http://localhost:4000/graphql",
 });
 
@@ -28,7 +34,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: ApolloLink.from([authLink, uploadLink]),
   cache: new InMemoryCache(),
 });
 

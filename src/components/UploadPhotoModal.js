@@ -13,16 +13,35 @@ import {
   useToast,
   Center,
 } from "@chakra-ui/react";
+import { useMutation } from "@apollo/client";
+import { UPLOAD_FILE, POST_PHOTO } from "../queries";
+import { useParams } from "react-router-dom";
 
 const UploadPhotoModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [file, setFile] = useState(null);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+  const [postPhoto] = useMutation(POST_PHOTO);
+
+  const { albumId } = useParams();
 
   const fileHandler = (e) => {
     e.preventDefault();
     setFile(e.target.files[0]);
   };
-
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    console.log({ file });
+    const response = await uploadFile({ variables: { file } });
+    if (response.data.uploadFile.url) {
+      const res = await postPhoto({
+        variables: {
+          albumId: parseInt(albumId),
+          url: response.data.uploadFile.url,
+        },
+      });
+    }
+  };
   return (
     <div>
       <Button class="btn btn--orange" onClick={onOpen}>
@@ -46,7 +65,7 @@ const UploadPhotoModal = () => {
               </div>
               <div class="album__record__upload__modal__button">
                 <Center>
-                  <Button class="btn btn--green" onClick={onOpen}>
+                  <Button class="btn btn--green" onClick={handleUpload}>
                     Upload Photo
                   </Button>
                 </Center>

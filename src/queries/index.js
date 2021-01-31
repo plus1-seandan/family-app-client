@@ -137,3 +137,22 @@ export const ALBUMS = gql`
     }
   }
 `;
+
+export const UPLOAD_FILE = gql`
+  mutation uploadFile($file: Upload!) {
+    uploadFile(file: $file) {
+      url
+    }
+  }
+`;
+
+export const POST_PHOTO = gql`
+  mutation postPhoto($albumId: Int!, $url: String!) {
+    postPhoto(albumId: $albumId, url: $url) {
+      photo {
+        id
+        url
+      }
+    }
+  }
+`;
