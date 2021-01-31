@@ -138,6 +138,19 @@ export const ALBUMS = gql`
   }
 `;
 
+export const ALBUM = gql`
+  {
+    getAlbum(albumId: 1) {
+      id
+      albumName
+      photos {
+        id
+        url
+      }
+    }
+  }
+`;
+
 export const UPLOAD_FILE = gql`
   mutation uploadFile($file: Upload!) {
     uploadFile(file: $file) {

@@ -8,6 +8,7 @@ import ProfilePage from "../pages/ProfilePage";
 import EventsPage from "../pages/EventsPage";
 import AlbumsPage from "../pages/AlbumsPage";
 import AlbumPage from "../pages/AlbumPage";
+import MessagePage from "../pages/MessagePage";
 
 const Routes = () => {
   return (
@@ -21,6 +22,7 @@ const Routes = () => {
         <Route path="/albums" exact component={AlbumsPage} />
         <Route path="/events" exact component={EventsPage} />
         <Route path="/albums/:albumId?" exact component={AlbumPage} />
+        <Route path="/messages/" exact component={MessagePage} />
       </Switch>
     </BrowserRouter>
   );

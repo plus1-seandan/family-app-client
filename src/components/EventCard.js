@@ -45,17 +45,16 @@ function EventCard({ event }) {
                 {MONTH[date.getMonth()]} {date.getDate()} {date.getFullYear()}
               </p>
             </div>
-
             <div class="events__upcoming__date">
               <p>
                 {displayCalendar()}
                 {/* <h4>25</h4> <span>{() => formatMonth(event?.startDate)}</span> */}
               </p>
             </div>
+            <Link to="/home" class="btn btn--white events__upcoming__btn">
+              View Event Details
+            </Link>
           </div>
-          <Link to="/home" class="btn btn--white events__upcoming__btn">
-            View Event Details
-          </Link>
         </div>
       </div>
     </div>

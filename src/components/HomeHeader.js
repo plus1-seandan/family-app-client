@@ -29,8 +29,10 @@ const HomeHeader = () => {
       </form>
       <nav class="user-nav">
         <div class="user-nav__icon-box">
-          <ChatBubbleIcon class="user-nav__icon" />
-          <span class="user-nav__notification">13</span>
+          <Link to="/messages">
+            <ChatBubbleIcon class="user-nav__icon" />
+            <span class="user-nav__notification">13</span>
+          </Link>
         </div>
         <div class="user-nav__user">
           <Link to="/profile">
