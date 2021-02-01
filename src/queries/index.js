@@ -194,3 +194,17 @@ export const CREATE_MESSAGE = gql`
     }
   }
 `;
+
+export const MESSAGE_SUB = gql`
+  subscription {
+    newMessage {
+      text
+      user {
+        id
+        firstName
+        lastName
+      }
+      me
+    }
+  }
+`;

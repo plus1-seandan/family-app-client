@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useRef, useState } from "react";
-import { CREATE_MESSAGE, MESSAGES } from "../queries";
+import { CREATE_MESSAGE, MESSAGES, MESSAGE_SUB } from "../queries";
 
 const classType = ["message my-message", "message other-message"];
 
@@ -23,8 +23,27 @@ const Message = ({ msg }) => {
 
 const Chat = () => {
   const [message, setMessage] = useState("");
-  const { loading, error, data } = useQuery(MESSAGES);
+  const { loading, error, data, subscribeToMore } = useQuery(MESSAGES);
   const [createMessage] = useMutation(CREATE_MESSAGE);
+
+  useEffect(() => {
+    let unsubscribe;
+    unsubscribe = subscribeToMore({
+      document: MESSAGE_SUB,
+      updateQuery: (prev, { subscriptionData }) => {
+        console.log("hit");
+        console.log({ subscriptionData });
+        if (!subscriptionData.data.newMessage) return prev;
+        const newMessage = subscriptionData.data.newMessage;
+        return {
+          ...prev,
+          messages: [...prev.messages, newMessage],
+        };
+      },
+    });
+    //unsubscribe on dismount
+    return () => unsubscribe();
+  });
 
   useEffect(() => {
     scrollToBottom();

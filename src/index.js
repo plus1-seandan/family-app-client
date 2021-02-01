@@ -3,6 +3,8 @@ import {
   ApolloProvider,
   createHttpLink,
   InMemoryCache,
+  from,
+  split,
 } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
@@ -13,6 +15,7 @@ import { ApolloLink } from "@apollo/client/core";
 import { WebSocketLink } from "@apollo/client/link/ws";
 
 import Routes from "./routes";
+import { getMainDefinition } from "@apollo/client/utilities";
 
 // const httpLink = createHttpLink({
 //   uri: "http://localhost:4000/graphql",
@@ -44,9 +47,23 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const httpLinks = from([authLink, uploadLink]);
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === "OperationDefinition" &&
+      definition.operation === "subscription"
+    );
+  },
+  wsLink,
+  httpLinks
+);
 const client = new ApolloClient({
-  link: ApolloLink.from([authLink, uploadLink, wsLink]),
+  // uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
+  link: splitLink,
 });
 
 document.title = "Family App";
