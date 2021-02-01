@@ -31,6 +31,7 @@ export const PROFILE = gql`
       }
       group {
         id
+        groupName
         members {
           id
           email
@@ -139,8 +140,8 @@ export const ALBUMS = gql`
 `;
 
 export const ALBUM = gql`
-  {
-    getAlbum(albumId: 1) {
+  query($albumId: Int!) {
+    getAlbum(albumId: $albumId) {
       id
       albumName
       photos {
@@ -148,6 +149,12 @@ export const ALBUM = gql`
         url
       }
     }
+  }
+`;
+
+export const DELETE_PHOTO = gql`
+  mutation deletePhoto($photoId: Int!) {
+    deletePhoto(photoId: $photoId)
   }
 `;
 
@@ -175,6 +182,7 @@ export const MESSAGES = gql`
     messages(groupId: $groupId, userId: $userId) {
       id
       text
+      # createdAt
       me
       user {
         id
@@ -196,9 +204,10 @@ export const CREATE_MESSAGE = gql`
 `;
 
 export const MESSAGE_SUB = gql`
-  subscription {
-    newMessage {
+  subscription($groupId: Int!) {
+    newMessage(groupId: $groupId) {
       text
+      # createdAt
       user {
         id
         firstName

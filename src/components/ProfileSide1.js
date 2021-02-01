@@ -1,5 +1,7 @@
+import { useQuery } from "@apollo/client";
 import React from "react";
 import { Link } from "react-router-dom";
+import { PROFILE } from "../queries";
 
 function Member({ user }) {
   return (
@@ -17,11 +19,13 @@ function Member({ user }) {
 }
 
 function ProfileSide1({ group }) {
+  const { loading, error, data } = useQuery(PROFILE);
+  console.log({ data });
   return (
     <div class="profile__side1">
       <h2 class="profile__side1__header">My Family</h2>
       <ul class="profile__side1__list">
-        {group?.members.map((member) => (
+        {data?.getProfile?.group.members?.map((member) => (
           <Member user={member} />
         ))}
       </ul>

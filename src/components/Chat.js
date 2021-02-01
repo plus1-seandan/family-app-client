@@ -5,6 +5,8 @@ import { CREATE_MESSAGE, MESSAGES, MESSAGE_SUB } from "../queries";
 const classType = ["message my-message", "message other-message"];
 
 const Message = ({ msg }) => {
+  const _date = new Date(parseInt(msg.createdAt));
+
   return (
     <li>
       <div class="message-data">
@@ -12,7 +14,10 @@ const Message = ({ msg }) => {
           <i class="fa fa-circle online"></i> {msg.user.firstName}{" "}
           {msg.user.lastName}
         </span>
-        <span class="message-data-time">10:20 AM, Today</span>
+        <span class="message-data-time">
+          {/* {_date.getHours()}:{_date.getMinutes()} {_date.get}, {_date.getDate()}
+          /{_date.getFullYear()} */}
+        </span>
       </div>
       <div class={msg.me ? "message other-message" : "message my-message"}>
         {msg.text}
@@ -23,7 +28,7 @@ const Message = ({ msg }) => {
 
 const Chat = ({ user }) => {
   const [message, setMessage] = useState("");
-
+  console.log(user);
   const { loading, error, data, subscribeToMore } = useQuery(MESSAGES, {
     variables: {
       groupId: parseInt(user?.group.id),
@@ -38,6 +43,9 @@ const Chat = ({ user }) => {
     let unsubscribe;
     unsubscribe = subscribeToMore({
       document: MESSAGE_SUB,
+      variables: {
+        groupId: parseInt(user?.group.id),
+      },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data.newMessage) return prev;
         const newMessage = subscriptionData.data.newMessage;
@@ -49,7 +57,7 @@ const Chat = ({ user }) => {
     });
     //unsubscribe on dismount
     return () => unsubscribe();
-  });
+  }, [user, subscribeToMore]);
 
   useEffect(() => {
     scrollToBottom();
@@ -86,7 +94,7 @@ const Chat = ({ user }) => {
             alt="avatar"
           />
           <div class="chat-about">
-            <div class="chat-with">Family Group Chat</div>
+            <div class="chat-with">{user?.group.groupName}</div>
             {/* <div class="chat-num-messages">already 1 902 messages</div> */}
           </div>
           <i class="fa fa-star"></i>

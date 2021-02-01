@@ -27,7 +27,7 @@ function EventCard({ event }) {
 
     return (
       <div>
-        <h4>{_date.getDate()}</h4> <span>{MONTH[_date.getMonth()]}</span>
+        <h4>{_date.getDate() + 1}</h4> <span>{MONTH[_date.getMonth()]}</span>
       </div>
     );
   };

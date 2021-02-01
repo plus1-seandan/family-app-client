@@ -14,7 +14,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
-import { UPLOAD_FILE, POST_PHOTO } from "../queries";
+import { UPLOAD_FILE, POST_PHOTO, ALBUM } from "../queries";
 import { useParams } from "react-router-dom";
 
 const UploadPhotoModal = () => {
@@ -31,6 +31,9 @@ const UploadPhotoModal = () => {
   };
   const handleUpload = async (e) => {
     e.preventDefault();
+    if (!file) {
+      return;
+    }
     const response = await uploadFile({ variables: { file } });
     if (response.data.uploadFile.url) {
       const res = await postPhoto({
@@ -38,13 +41,22 @@ const UploadPhotoModal = () => {
           albumId: parseInt(albumId),
           url: response.data.uploadFile.url,
         },
+        refetchQueries: [
+          {
+            query: ALBUM,
+            variables: {
+              albumId: parseInt(albumId),
+            },
+          },
+        ],
       });
+      onClose();
     }
   };
   return (
     <div>
       <Button class="btn btn--orange" onClick={onOpen}>
-        Open Modal
+        Add Photo
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

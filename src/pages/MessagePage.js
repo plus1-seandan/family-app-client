@@ -8,6 +8,7 @@ import { ME, PROFILE } from "../queries";
 
 const MessagePage = () => {
   const { loading, error, data } = useQuery(PROFILE);
+  console.log({ data, error });
   return (
     <div class="general-layout">
       <div class="container">

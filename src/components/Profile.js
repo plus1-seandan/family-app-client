@@ -8,11 +8,11 @@ import ProfileSide1 from "./ProfileSide1";
 
 const Profile = () => {
   const { loading, error, data } = useQuery(PROFILE);
-
+  console.log({ data });
   return (
     <div class="profile">
       <ProfileMain user={data?.getProfile.user} />
-      <ProfileSide1 group={data?.getProfile.group} />
+      {/* <ProfileSide1 group={data?.getProfile.group} /> */}
 
       {/* <div class="profile__side2">Side2</div> */}
     </div>

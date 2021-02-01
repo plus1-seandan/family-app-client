@@ -84,7 +84,7 @@ function CreateAlbumModal() {
   return (
     <div>
       <Button class="btn btn--orange" onClick={onOpen}>
-        Open Modal
+        Create New Album
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

@@ -1,23 +1,66 @@
+import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
+import { PROFILE, UPCOMING_EVENTS } from "../queries";
+import EventCard from "./EventCard";
+import ProfileSide1 from "./ProfileSide1";
+import ProfileMain from "./ProfileMain";
 
 const HomeDetail = () => {
-  return (
-    <div class="detail">
-      <div class="events">
-        <div class="events__upcoming">
-          <div class="events__upcoming__info">
-            <h1>Upcoming Events</h1>
-            <p>Alaska Cruise</p>
+  const { loading, error, data } = useQuery(PROFILE);
+
+  const renderMemberComponent = (member) => {
+    return (
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="our-team">
+          <div class="picture">
+            <img class="img-fluid" src={member.photo} />
           </div>
-          <div class="events__upcoming__date">
-            <p>
-              <h4>25</h4> <span>May</span>
-            </p>
+          <div class="team-content">
+            <h3 class="name">
+              {member.firstName} {member.lastName}
+            </h3>
+            <h4 class="title">{member.email}</h4>
           </div>
+          <ul class="social">
+            <li>
+              <a
+                href="https://codepen.io/collection/XdWJOQ/"
+                class="fa fa-facebook"
+                aria-hidden="true"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://codepen.io/collection/XdWJOQ/"
+                class="fa fa-twitter"
+                aria-hidden="true"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://codepen.io/collection/XdWJOQ/"
+                class="fa fa-google-plus"
+                aria-hidden="true"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://codepen.io/collection/XdWJOQ/"
+                class="fa fa-linkedin"
+                aria-hidden="true"
+              ></a>
+            </li>
+          </ul>
         </div>
-        <Link to="/home" class="btn btn--white events__upcoming__btn">
-          View Event Details
-        </Link>
+      </div>
+    );
+  };
+  return (
+    <div class="home__container">
+      <div class="home__row">
+        {data?.getProfile?.group.members.map((member) =>
+          renderMemberComponent(member)
+        )}
       </div>
     </div>
   );
