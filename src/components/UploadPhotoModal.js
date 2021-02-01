@@ -55,9 +55,10 @@ const UploadPhotoModal = () => {
   };
   return (
     <div>
-      <Button class="btn btn--orange" onClick={onOpen}>
+      <Button class="btn btn--green" onClick={onOpen}>
         Add Photo
       </Button>
+      <Button class="btn btn--orange">Delete Album</Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent class="album__upload">

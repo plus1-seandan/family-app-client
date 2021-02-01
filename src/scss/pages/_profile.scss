@@ -215,6 +215,10 @@
   -moz-transition-timing-function: ease;
   -o-transition-timing-function: ease;
   transition-timing-function: ease;
+
+  &__button {
+    outline: none;
+  }
 }
 .follow:hover {
   background-color: var(--color-secondary-dark);

@@ -217,3 +217,9 @@ export const MESSAGE_SUB = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation($username: String!, $firstName: String!, $lastName: String!) {
+    updateUser(username: $username, firstName: $firstName, lastName: $lastName)
+  }
+`;

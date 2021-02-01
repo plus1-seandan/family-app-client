@@ -1,4 +1,21 @@
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  useDisclosure,
+  useToast,
+  Center,
+} from "@chakra-ui/react";
+import EditProfileForm from "./EditProfileForm";
+
 const ProfileMain = ({ user }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <div class="profile">
       <div class="profile__container">
@@ -27,7 +44,6 @@ const ProfileMain = ({ user }) => {
             </div>
           </div>
         </header>
-
         <div class="profile__content">
           <div class="data">
             <ul class="profile__main__info__list">
@@ -45,9 +61,22 @@ const ProfileMain = ({ user }) => {
               </li>
             </ul>
           </div>
-          <div class="follow">
-            {" "}
+          {/* <div class="follow">
             <div class="icon-twitter"></div> Edit
+          </div> */}
+          <div class="follow">
+            <Button class="follow__button" onClick={onOpen}>
+              Edit Profile
+            </Button>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalBody class="edit__profile__form">
+                  <EditProfileForm user={user} />
+                </ModalBody>
+                <ModalFooter></ModalFooter>
+              </ModalContent>
+            </Modal>
           </div>
         </div>
       </div>
