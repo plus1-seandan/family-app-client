@@ -23,7 +23,6 @@ const AlbumForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(albumName);
     const response = await createAlbum({
       variables: {
         albumName,
@@ -39,7 +38,6 @@ const AlbumForm = () => {
         isClosable: true,
       });
     } else {
-      console.log({ data: response.data });
       history.push(`/albums/${response.data.createAlbum.album.id}`);
 
       toast({

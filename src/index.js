@@ -28,6 +28,14 @@ const wsLink = new WebSocketLink({
   uri: GRAPHQL_ENDPOINT,
   options: {
     reconnect: true,
+    connectionParams: async () => {
+      const token = localStorage.getItem("token");
+      return {
+        headers: {
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+      };
+    },
   },
 });
 

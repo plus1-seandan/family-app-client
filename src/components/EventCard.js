@@ -24,9 +24,6 @@ function EventCard({ event }) {
       return;
     }
     const _date = new Date(parseInt(event.startDate));
-    console.log({ _date });
-    console.log({ month: _date.getMonth() });
-    console.log({ Date: _date.getDate() });
 
     return (
       <div>

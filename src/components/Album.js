@@ -18,7 +18,6 @@ const Album = () => {
       </div>
     );
   };
-  console.log({ data });
   return (
     <div class="album__record">
       <div class="album__record__main"></div>

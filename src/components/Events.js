@@ -7,7 +7,6 @@ import EventForm from "./EventForm";
 
 function Events() {
   const { loading, error, data } = useQuery(UPCOMING_EVENTS);
-  console.log({ data });
   return (
     <div class="events__page">
       <div class="events__page__main">

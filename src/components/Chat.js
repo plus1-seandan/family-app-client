@@ -21,9 +21,17 @@ const Message = ({ msg }) => {
   );
 };
 
-const Chat = () => {
+const Chat = ({ user }) => {
   const [message, setMessage] = useState("");
-  const { loading, error, data, subscribeToMore } = useQuery(MESSAGES);
+
+  const { loading, error, data, subscribeToMore } = useQuery(MESSAGES, {
+    variables: {
+      groupId: parseInt(user?.group.id),
+      userId: parseInt(user?.user.id),
+    },
+    //need to fetch from server for realtime communication
+    fetchPolicy: "network-only",
+  });
   const [createMessage] = useMutation(CREATE_MESSAGE);
 
   useEffect(() => {
@@ -31,8 +39,6 @@ const Chat = () => {
     unsubscribe = subscribeToMore({
       document: MESSAGE_SUB,
       updateQuery: (prev, { subscriptionData }) => {
-        console.log("hit");
-        console.log({ subscriptionData });
         if (!subscriptionData.data.newMessage) return prev;
         const newMessage = subscriptionData.data.newMessage;
         return {
@@ -57,12 +63,20 @@ const Chat = () => {
   const handleMessageSend = async () => {
     const response = await createMessage({
       variables: {
+        userId: user?.user.id,
         text: message,
       },
-      refetchQueries: [{ query: MESSAGES }],
+      refetchQueries: [
+        {
+          query: MESSAGES,
+          variables: {
+            groupId: parseInt(user?.group.id),
+            userId: parseInt(user?.user.id),
+          },
+        },
+      ],
     });
   };
-
   return (
     <div class="chat-page">
       <div class="chat">
@@ -81,7 +95,7 @@ const Chat = () => {
         <div class="chat-history">
           <ul class="chat-history-list">
             {data?.messages.map((message) => (
-              <Message msg={message} />
+              <Message msg={message} key={message.id} />
             ))}
             <div ref={messagesEndRef} />
           </ul>

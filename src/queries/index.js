@@ -171,8 +171,8 @@ export const POST_PHOTO = gql`
 `;
 
 export const MESSAGES = gql`
-  {
-    messages {
+  query($groupId: Int!, $userId: Int!) {
+    messages(groupId: $groupId, userId: $userId) {
       id
       text
       me
@@ -187,8 +187,8 @@ export const MESSAGES = gql`
 `;
 
 export const CREATE_MESSAGE = gql`
-  mutation($text: String!) {
-    createMessage(text: $text) {
+  mutation($userId: Int!, $text: String!) {
+    createMessage(userId: $userId, text: $text) {
       id
       text
     }

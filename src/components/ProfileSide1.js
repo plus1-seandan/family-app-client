@@ -17,7 +17,6 @@ function Member({ user }) {
 }
 
 function ProfileSide1({ group }) {
-  console.log({ group });
   return (
     <div class="profile__side1">
       <h2 class="profile__side1__header">My Family</h2>

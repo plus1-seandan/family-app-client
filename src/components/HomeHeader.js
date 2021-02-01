@@ -17,7 +17,6 @@ import me from "../img/seandan.jpg";
 
 const HomeHeader = () => {
   const { loading, error, data } = useQuery(ME);
-  console.log({ data });
   return (
     <header class="home-header">
       <img src={logo} alt="logo" class="home-logo" />

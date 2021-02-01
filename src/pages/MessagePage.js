@@ -4,15 +4,17 @@ import Chat from "../components/Chat";
 
 import HomeHeader from "../components/HomeHeader";
 import Sidebar from "../components/Sidebar";
+import { ME, PROFILE } from "../queries";
 
 const MessagePage = () => {
+  const { loading, error, data } = useQuery(PROFILE);
   return (
     <div class="general-layout">
       <div class="container">
         <HomeHeader />
         <div class="general-content">
           <Sidebar />
-          <Chat />
+          {data && <Chat user={data?.getProfile} />}
         </div>
       </div>
     </div>

@@ -31,7 +31,6 @@ const UploadPhotoModal = () => {
   };
   const handleUpload = async (e) => {
     e.preventDefault();
-    console.log({ file });
     const response = await uploadFile({ variables: { file } });
     if (response.data.uploadFile.url) {
       const res = await postPhoto({

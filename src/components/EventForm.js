@@ -16,7 +16,6 @@ function EventForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ state });
     const response = await createEvent({
       variables: {
         ...state,
