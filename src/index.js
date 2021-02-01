@@ -10,12 +10,23 @@ import ReactDOM from "react-dom";
 import { setContext } from "@apollo/client/link/context";
 import { createUploadLink } from "apollo-upload-client";
 import { ApolloLink } from "@apollo/client/core";
+import { WebSocketLink } from "@apollo/client/link/ws";
 
 import Routes from "./routes";
 
 // const httpLink = createHttpLink({
 //   uri: "http://localhost:4000/graphql",
 // });
+
+const GRAPHQL_ENDPOINT = `ws://localhost:4000/graphql`;
+
+// WebSocket Link
+const wsLink = new WebSocketLink({
+  uri: GRAPHQL_ENDPOINT,
+  options: {
+    reconnect: true,
+  },
+});
 
 const uploadLink = createUploadLink({
   uri: "http://localhost:4000/graphql",
@@ -34,7 +45,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: ApolloLink.from([authLink, uploadLink]),
+  link: ApolloLink.from([authLink, uploadLink, wsLink]),
   cache: new InMemoryCache(),
 });
 

@@ -76,16 +76,14 @@ $gray: #92959e;
 // }
 
 .chat {
-  width: 100%;
+  width: 78.25vw;
   height: 95vh;
-  min-height: 50rem;
-  float: left;
   background: #f2f5f8;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   height: 95vh;
-
   color: #434651;
+  margin: 0 auto;
 
   .chat-header {
     padding: 20px;
@@ -123,6 +121,7 @@ $gray: #92959e;
     border-bottom: 2px solid white;
     overflow-y: scroll;
     height: 75%;
+    width: 100%;
 
     .message-data {
       margin-bottom: 15px;
@@ -159,14 +158,22 @@ $gray: #92959e;
     }
 
     .my-message {
-      background: $green;
+      background-image: linear-gradient(
+        to right bottom,
+        $color-primary-light,
+        $color-primary-dark
+      );
     }
 
     .other-message {
-      background: $blue;
-
+      text-align: right;
+      background-image: linear-gradient(
+        to right bottom,
+        $color-secondary-light,
+        $color-secondary-dark
+      );
       &:after {
-        border-bottom-color: $blue;
+        border-bottom-color: orange;
         left: 93%;
       }
     }
@@ -178,9 +185,11 @@ $gray: #92959e;
       width: 100%;
       border: none;
       padding: 10px 20px;
+      outline: none;
       font: 14px/22px "Lato", Arial, sans-serif;
       margin-bottom: 10px;
       border-radius: 5px;
+      font-size: 2rem;
       resize: none;
     }
 

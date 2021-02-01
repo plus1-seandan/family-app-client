@@ -169,3 +169,28 @@ export const POST_PHOTO = gql`
     }
   }
 `;
+
+export const MESSAGES = gql`
+  {
+    messages {
+      id
+      text
+      me
+      user {
+        id
+        username
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
+export const CREATE_MESSAGE = gql`
+  mutation($text: String!) {
+    createMessage(text: $text) {
+      id
+      text
+    }
+  }
+`;
