@@ -31,7 +31,7 @@
 
 .profile__container {
   width: 70vw;
-  height: 80vh;
+  // height: 80vh;
   margin: 3em auto 1em auto;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -44,6 +44,7 @@
   -moz-box-shadow: #bdc3c7 0 5px 5px;
   box-shadow: #bdc3c7 0 5px 5px;
   border: 5px solid var(--color-primary);
+
   &__home {
     width: 30%;
   }
@@ -52,6 +53,7 @@
 .bg {
   border-bottom: 8px solid var(--color-primary);
   width: 100%;
+  opacity: 0.5;
 }
 
 .bio:hover > .desc {
@@ -61,13 +63,13 @@
 
 .avatarcontainer {
   position: absolute;
-  bottom: -10rem;
+  bottom: -5rem;
   right: 0;
   left: 0;
-  top: -9rem;
+  top: -5rem;
   margin: auto;
-  width: 40rem;
-  height: 40rem;
+  width: 30rem;
+  height: 30rem;
   display: block;
 }
 .avatarcontainer:hover > .hover {
@@ -87,8 +89,8 @@
   position: relative;
 }
 .avatar__image {
-  width: 40rem;
-  height: 40rem;
+  width: 30rem;
+  height: 30rem;
   border-radius: 100%;
   border: 5px solid var(--color-primary);
 }

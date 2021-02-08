@@ -2,17 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { ME, UPDATE_USER } from "../queries";
 
-const initState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  dateOfBirth: "",
-  username: "",
-};
-
-const EditProfileForm = ({ user }) => {
-  const { loading, error, data } = useQuery(ME);
+const EditProfileForm = ({ user, onClose }) => {
   const [updateUser] = useMutation(UPDATE_USER);
   const [state, setState] = useState(user);
   const handleSubmit = async (e) => {
@@ -25,6 +15,7 @@ const EditProfileForm = ({ user }) => {
           username: state.username,
         },
       });
+      onClose();
     } catch (e) {
       console.log(e);
     }

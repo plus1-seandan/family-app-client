@@ -8,9 +8,9 @@ import EventIcon from "@material-ui/icons/Event";
 import HomeIcon from "@material-ui/icons/Home";
 import PhotoAlbumIcon from "@material-ui/icons/PhotoAlbum";
 
-import nat1 from "../img/nat-1-large.jpg";
-import nat2 from "../img/nat-2-large.jpg";
-import nat3 from "../img/nat-3-large.jpg";
+import nat1 from "../img/family6.jpg";
+import nat2 from "../img/family2.jpg";
+import nat3 from "../img/family4.jpg";
 import logo from "../img/logo2-white.png";
 import me from "../img/seandan.jpg";
 import HomeHeader from "../components/HomeHeader";

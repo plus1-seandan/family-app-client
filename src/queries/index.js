@@ -223,3 +223,9 @@ export const UPDATE_USER = gql`
     updateUser(username: $username, firstName: $firstName, lastName: $lastName)
   }
 `;
+
+export const DELETE_ALBUM = gql`
+  mutation($albumId: Int!) {
+    deleteAlbum(albumId: $albumId)
+  }
+`;

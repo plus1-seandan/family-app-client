@@ -12,6 +12,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import EditProfileForm from "./EditProfileForm";
+import fam4 from "../img/family4.jpg";
 
 const ProfileMain = ({ user }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -21,11 +22,7 @@ const ProfileMain = ({ user }) => {
       <div class="profile__container">
         <header class="profile__header">
           <div class="bio">
-            <img
-              src="http://www.croop.cl/UI/twitter/images/up.jpg"
-              alt="background"
-              class="bg"
-            />
+            <img src={fam4} alt="background" class="bg" />
             {/* <div class="desc">
               <h3>@carlf</h3>
               <p>
@@ -72,7 +69,7 @@ const ProfileMain = ({ user }) => {
               <ModalOverlay />
               <ModalContent>
                 <ModalBody class="edit__profile__form">
-                  <EditProfileForm user={user} />
+                  <EditProfileForm user={user} onClose={onClose} />
                 </ModalBody>
                 <ModalFooter></ModalFooter>
               </ModalContent>

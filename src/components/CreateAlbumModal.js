@@ -12,7 +12,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
-import { CREATE_ALBUM } from "../queries";
+import { CREATE_ALBUM, ALBUMS } from "../queries";
 import { useHistory } from "react-router-dom";
 
 const AlbumForm = () => {
@@ -27,7 +27,7 @@ const AlbumForm = () => {
       variables: {
         albumName,
       },
-      // refetchQueries: [{ query: UPCOMING_EVENTS }],
+      refetchQueries: [{ query: ALBUMS }],
     });
     if (response.data.createAlbum.errors) {
       toast({

@@ -12,17 +12,33 @@ import {
   useDisclosure,
   useToast,
   Center,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverFooter,
+  PopoverHeader,
+  PopoverTrigger,
+  Portal,
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
-import { UPLOAD_FILE, POST_PHOTO, ALBUM } from "../queries";
-import { useParams } from "react-router-dom";
+import {
+  UPLOAD_FILE,
+  POST_PHOTO,
+  ALBUM,
+  DELETE_ALBUM,
+  ALBUMS,
+} from "../queries";
+import { useHistory, useParams } from "react-router-dom";
 
 const UploadPhotoModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [file, setFile] = useState(null);
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [postPhoto] = useMutation(POST_PHOTO);
-
+  const [deleteAlbum] = useMutation(DELETE_ALBUM);
+  const history = useHistory();
   const { albumId } = useParams();
 
   const fileHandler = (e) => {
@@ -53,12 +69,36 @@ const UploadPhotoModal = () => {
       onClose();
     }
   };
+
+  const handleDeleteAlbum = async () => {
+    await deleteAlbum({
+      variables: { albumId: parseInt(albumId) },
+      refetchQueries: [{ query: ALBUMS }],
+    });
+    history.push("/albums");
+  };
   return (
     <div>
       <Button class="btn btn--green" onClick={onOpen}>
         Add Photo
       </Button>
-      <Button class="btn btn--orange">Delete Album</Button>
+      <Popover>
+        <PopoverTrigger>
+          <Button class="btn btn--orange">Delete Album</Button>
+        </PopoverTrigger>
+        <Portal>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverHeader>Delete Album?</PopoverHeader>
+            <PopoverCloseButton />
+            <PopoverBody>
+              <Button class="btn btn--orange" onClick={handleDeleteAlbum}>
+                Delete
+              </Button>
+            </PopoverBody>
+          </PopoverContent>
+        </Portal>
+      </Popover>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent class="album__upload">
